@@ -1,0 +1,42 @@
+name: Update pre-commit hooks
+
+permissions:
+  contents: read
+
+on:
+  schedule:
+    # run once a month at midnight of the first day of the month
+    - cron: 0 0 1 * *
+  workflow_dispatch:
+
+jobs:
+  update:
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v3
+
+      - name: Update pre-commit hooks
+        uses: vrslev/pre-commit-autoupdate@v1.0.0
+        with:
+          extra-args: --freeze
+
+      - name: Prettify code
+        uses: actionsx/prettier@v2
+        with:
+          args: --write .pre-commit-config.yaml
+
+      - uses: peter-evans/create-pull-request@v4.2.3
+        with:
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          branch: pre-commit-autoupdate
+          title: "chore(deps): update pre-commit hooks"
+          commit-message: "chore(deps): update pre-commit hooks"
+          body: Update pre-commit hooks
+          labels: |
+            dependencies
+            pre-commit
+          delete-branch: True
