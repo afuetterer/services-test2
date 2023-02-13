@@ -121,7 +121,9 @@ keep-runtime-typing = true
 [tool.semantic_release]
 branch = "main"
 commit_subject = "chore: release {version}"
+commit_message = ""
 version_toml = "pyproject.toml:tool.poetry.version"
 version_pattern = [
   'CITATION.cff:^version: {version}$'
 ]
+changelog_file = "CHANGELOG.md"
