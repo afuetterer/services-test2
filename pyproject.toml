@@ -118,6 +118,7 @@ known-first-party = ["services_test", "tests"]
 keep-runtime-typing = true
 
 [tool.semantic_release]
+# https://python-semantic-release.readthedocs.io/en/latest/configuration.html
 branch = "main"
 commit_subject = "chore: release {version}"
 commit_message = ""
