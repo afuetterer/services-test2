@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "services-test2"
-version = "0.2.0"
+version = "0.3.0"
 authors = ["Heinz-Alexander Fuetterer <fuetterh@posteo.de>"]
 description = "services-test2"
 license = "MIT"
@@ -14,7 +14,6 @@ packages = [
 classifiers = [
     "Development Status :: 1 - Planning",
     "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
