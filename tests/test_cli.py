@@ -1,8 +1,8 @@
 import pytest
 from typer.testing import CliRunner
 
-from services_test import __version__
-from services_test.cli import app
+from services_test2 import __version__
+from services_test2.cli import app
 
 runner = CliRunner()
 

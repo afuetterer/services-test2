@@ -2,8 +2,8 @@
 
 import typer
 
-from services_test import __version__
-from services_test.lib import hello_world
+from services_test2 import __version__
+from services_test2.lib import hello_world
 
 APP_NAME = "services-test"
 CONTEXT_SETTINGS = {"help_option_names": ["-h", "--help"]}

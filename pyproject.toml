@@ -9,7 +9,7 @@ repository = "https://github.com/afuetterer/services-test2"
 documentation = "https://afuetterer.github.io/services-test2"
 
 packages = [
-    { include = "services_test", from = "src" },
+    { include = "services_test2", from = "src" },
 ]
 classifiers = [
     "Development Status :: 1 - Planning",
@@ -82,13 +82,13 @@ testpaths = "tests"
 # https://coverage.readthedocs.io/en/7.0.5/config.html#configuration-reference
 branch = true
 parallel = true
-source = ["src/services_test"]
+source = ["src/services_test2"]
 
 [tool.coverage.paths]
 source = [
-  "src/services_test",
-  "*/site-packages/services_test",
-  "*/src/services_test"
+  "src/services_test2",
+  "*/site-packages/services_test2",
+  "*/src/services_test2"
 ]
 
 [tool.coverage.report]
@@ -126,8 +126,8 @@ version_toml = "pyproject.toml:tool.poetry.version"
 version_pattern = [
   'CITATION.cff:^version: {version}$'
 ]
-
 upload_to_pypi = false
 upload_to_release = true
 build_command = "poetry build"
 changelog_components = "semantic_release.changelog.changelog_headers,semantic_release.changelog.compare_url"
+major_on_zero = false
