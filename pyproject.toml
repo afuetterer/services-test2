@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "services-test"
+name = "services-test2"
 version = "0.2.0"
 authors = ["Heinz-Alexander Fuetterer <fuetterh@posteo.de>"]
-description = "services-test"
+description = "services-test2"
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/afuetterer/services-test"
-documentation = "https://afuetterer.github.io/services-test"
+repository = "https://github.com/afuetterer/services-test2"
+documentation = "https://afuetterer.github.io/services-test2"
 
 packages = [
     { include = "services_test", from = "src" },

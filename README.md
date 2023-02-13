@@ -1,4 +1,4 @@
-# services-test
+# services-test2
 
 [![CalVer][calver-badge]][calver]
 [![License][license-badge]][license]
@@ -13,9 +13,9 @@ This repository is used to test services and configurations. Nothing to see here
 
 ---
 
-**Documentation**: <https://afuetterer.github.io/services-test>
+**Documentation**: <https://afuetterer.github.io/services-test2>
 
-**Source Code**: <https://github.com/afuetterer/services-test>
+**Source Code**: <https://github.com/afuetterer/services-test2>
 
 ---
 
