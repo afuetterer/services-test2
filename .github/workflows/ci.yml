@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
+  tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -23,6 +23,8 @@ jobs:
           - "3.11"
 
     steps:
+      # TODO: cache pip, poetry, tox, pre-commit
+
       - name: Check out the repository
         uses: actions/checkout@v3
 
@@ -37,3 +39,25 @@ jobs:
 
       - name: Test with tox
         run: tox
+
+      # todo coverage
+
+  release:
+    needs: tests
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.11"
+
+      - run: pwd
+
+      - run: ls -ls
