@@ -61,3 +61,10 @@ jobs:
       - run: pwd
 
       - run: ls -ls
+
+      - run: less CITATION.cff
+
+      - run: |
+          sed -i -r "s/(date-released: ).*/\1$(date '+%Y-%m-%d')/" CITATION.cff
+
+      - run: less CITATION.cff
