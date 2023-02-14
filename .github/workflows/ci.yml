@@ -38,7 +38,7 @@ jobs:
             .tox
             ~/.cache/pip
             ~/.cache/pre-commit
-          key: ${{ matrix.python-version }}-${{ hashFiles("poetry.lock", ".pre-commit-config.yaml") }}
+          key: ${{ matrix.python-version }}-${{ hashFiles('poetry.lock', '.pre-commit-config.yaml') }}
           restore-keys: |
             ${{ matrix.python-version }}-
 
