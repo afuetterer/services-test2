@@ -23,8 +23,6 @@ jobs:
           - "3.11"
 
     steps:
-      # TODO: cache pip, poetry, tox, pre-commit
-
       - name: Check out the repository
         uses: actions/checkout@v3
 
@@ -32,6 +30,17 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+
+      - name: Restore cached dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            .tox
+            ~/.cache/pip
+            ~/.cache/pre-commit
+          key: ${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: |
+            ${{ matrix.python-version }}-
 
       - name: Install CI dependencies with pip
         run: |
@@ -58,13 +67,17 @@ jobs:
         with:
           python-version: "3.11"
 
-      - run: pwd
+      - name: Install CI dependencies with pip
+        run: python -m pip install python-semantic-release
 
-      - run: ls -ls
-
-      - run: less CITATION.cff
-
-      - run: |
+      - name: Update release date in CITATION.cff
+        run: |
           sed -i -r "s/(date-released: ).*/\1$(date '+%Y-%m-%d')/" CITATION.cff
 
-      - run: less CITATION.cff
+      - name: Publish semantic release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          semantic-release publish -v DEBUG
