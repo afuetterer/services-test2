@@ -1,6 +1,5 @@
 # services-test2
 
-[![CalVer][calver-badge]][calver]
 [![License][license-badge]][license]
 [![pre-commit enabled][pre-commit-badge]][pre-commit]
 [![Ruff][ruff-badge]][ruff]
@@ -25,7 +24,7 @@ Python 3.8+
 
 ## Installation
 
-You can install _services-test_ via [pip] from [Test PyPI][test-pypi]:
+You can install _services-test2_ via [pip] from [Test PyPI][test-pypi]:
 
 ```console
 $ pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple services-test
@@ -33,7 +32,7 @@ $ pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.or
 
 ## License
 
-This project is licensed under the terms of the MIT license.
+_services-test2_ is licensed under the terms of the MIT license.
 
 <!-- Markdown links -->
 
