@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 <!--next-version-placeholder-->
 
+## v0.4.1 (2023-02-16)
+### Fix
+* Add fix to class ([`6b391e1`](https://github.com/afuetterer/services-test2/commit/6b391e12d079e742242dd323dfdd352655068ac9))
+
+**[See all commits in this version](https://github.com/afuetterer/services-test2/compare/v0.4.0...v0.4.1)**
+
 ## v0.4.0 (2023-02-16)
 ### Feature
 * Add new func to class ([`6f44525`](https://github.com/afuetterer/services-test2/commit/6f445250ecb3e9b4dca0c7fe94aa4e5539280182))
