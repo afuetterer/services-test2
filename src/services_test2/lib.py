@@ -26,6 +26,7 @@ class Hello:
     msg6: str
     msg7: str
     msg8: str
+    msg9: str
 
 
 class World:
