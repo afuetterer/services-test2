@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "services-test2"
-version = "0.3.0"
+version = "0.4.0"
 authors = ["Heinz-Alexander Fuetterer <fuetterh@posteo.de>"]
 description = "services-test2"
 license = "MIT"
@@ -27,7 +27,7 @@ httpx = ">=0.23.3"
 typer = {extras = ["all"], version = ">=0.7.0"}
 
 [tool.poetry.group.dev.dependencies]
-bumpver = ">=2022.1120"
+# bumpver = ">=2022.1120"
 coverage = ">=7.1.0"
 coverage-badge = ">=1.1.0"
 mypy = ">=0.991"
@@ -129,5 +129,6 @@ version_pattern = [
 upload_to_pypi = false
 upload_to_release = true
 build_command = "poetry build"
+pre_commit_command = "pytest -V"
 changelog_components = "semantic_release.changelog.changelog_headers,semantic_release.changelog.compare_url"
 major_on_zero = false
