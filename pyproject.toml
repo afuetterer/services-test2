@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "services-test2"
-version = "0.4.2"
+version = "0.4.3"
 authors = ["Heinz-Alexander Fuetterer <fuetterh@posteo.de>"]
 description = "services-test2"
 license = "MIT"
@@ -132,3 +132,5 @@ build_command = "poetry build"
 pre_commit_command = '''sed -i -r "s/(date-released: ).*/\1$(date '+%Y-%m-%d')/" CITATION.cff'''
 changelog_components = "semantic_release.changelog.changelog_headers,semantic_release.changelog.compare_url"
 major_on_zero = false
+hvcs = "github"
+tag_format = "{version}"
