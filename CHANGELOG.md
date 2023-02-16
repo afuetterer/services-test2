@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 <!--next-version-placeholder-->
 
+## v0.4.2 (2023-02-16)
+### Fix
+* Add new attr to class ([`1e7b2f3`](https://github.com/afuetterer/services-test2/commit/1e7b2f3f50ad99626336ca9cafd78705bcc5bc26))
+
+**[See all commits in this version](https://github.com/afuetterer/services-test2/compare/v0.4.1...v0.4.2)**
+
 ## v0.4.1 (2023-02-16)
 ### Fix
 * Add fix to class ([`6b391e1`](https://github.com/afuetterer/services-test2/commit/6b391e12d079e742242dd323dfdd352655068ac9))
