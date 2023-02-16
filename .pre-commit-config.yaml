@@ -51,6 +51,11 @@ repos:
     rev: dc6912646c561f16af711006e7615d52e9bf0968 # frozen: v1.0.0
     hooks:
       - id: mypy
+        args: ["--strict"]
+        additional_dependencies:
+          - pytest-mock
+          - typer[all]
+        exclude: "docs/"
 
   - repo: https://github.com/FHPythonUtils/LicenseCheck/
     rev: "5bbbb11e58d91a1df4e791f3d48e904a5a25b78d" # frozen: 2023
