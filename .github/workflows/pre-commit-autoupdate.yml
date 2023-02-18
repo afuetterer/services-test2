@@ -39,4 +39,4 @@ jobs:
           labels: |
             dependencies
             pre-commit
-          delete-branch: True
+          delete-branch: true
