@@ -16,6 +16,8 @@ concurrency:
 permissions:
   contents: read
 
+# TODO: harden runner
+
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -38,7 +40,6 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            .tox
             ~/.cache/pip
             ~/.cache/pre-commit
           key: ${{ matrix.python-version }}-${{ hashFiles('poetry.lock', '.pre-commit-config.yaml') }}
@@ -49,14 +50,18 @@ jobs:
         run: |
           python -m pip install -r .github/workflows/requirements.txt
 
-      - name: Test with tox
-        run: tox
+      - name: Install project
+        run: |
+          poetry install
+
+      - name: Run test suite with pytest
+        run: pytest --cov
 
       # todo coverage
 
   release:
     needs: tests
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.repository == 'afuetterer/services-test2' && github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
@@ -66,7 +71,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Python 3.11
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: "3.11"
 
@@ -81,3 +86,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           semantic-release publish -v DEBUG
+
+# TODO: push to test pypi
+
+# TODO: docs
