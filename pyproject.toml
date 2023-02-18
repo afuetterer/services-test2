@@ -27,12 +27,10 @@ httpx = ">=0.23.3"
 typer = {extras = ["all"], version = ">=0.7.0"}
 
 [tool.poetry.group.dev.dependencies]
-# bumpver = ">=2022.1120"
-coverage = ">=7.1.0"
 coverage-badge = ">=1.1.0"
 mypy = ">=0.991"
 pre-commit = ">=3.0.2"
-pytest = ">=7.2.1"
+pytest-cov = ">=4.0.0"
 pytest-mock = ">=3.10.0"
 python-semantic-release = ">=7.33.1"
 
