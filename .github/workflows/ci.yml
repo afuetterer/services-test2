@@ -20,66 +20,68 @@ permissions:
 # https://github.com/afuetterer/services-test/pull/20
 
 jobs:
-  # tests:
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       python-version:
-  #         - "3.11"
-  #         # - "3.8"
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:
+          - "3.11"
+          # - "3.8"
 
-  #   steps:
-  #     - name: Check out the repository
-  #       uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
 
-  #     - name: Set up Python ${{ matrix.python-version }}
-  #       uses: actions/setup-python@v4
-  #       with:
-  #         python-version: ${{ matrix.python-version }}
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
 
-  #     # https://github.com/snok/install-poetry#workflow-examples-and-tips
+      # https://github.com/snok/install-poetry#workflow-examples-and-tips
 
-  #     # this is slow
-  #     # see: https://github.com/snok/install-poetry#caching-the-poetry-installation
-  #     - name: Install Poetry
-  #       uses: snok/install-poetry@v1
-  #       with:
-  #         virtualenvs-create: true
-  #         virtualenvs-in-project: true
+      # this is slow
+      # see: https://github.com/snok/install-poetry#caching-the-poetry-installation
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
 
-  #     - name: Load cached dependencies
-  #       id: cached-dependencies
-  #       uses: actions/cache@v3
-  #       with:
-  #         path: |
-  #           ~/.cache/pip
-  #           ~/.cache/pre-commit
-  #           .venv
-  #         key: venv-python${{ matrix.python-version }}-${{ hashFiles('poetry.lock', '.pre-commit-config.yaml') }}
+      - name: Load cached dependencies
+        id: cached-dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.cache/pre-commit
+            .venv
+          key: venv-python${{ matrix.python-version }}-${{ hashFiles('poetry.lock', '.pre-commit-config.yaml') }}
 
-  #     - name: Install dependencies
-  #       if: steps.cached-dependencies.outputs.cache-hit != 'true'
-  #       run: |
-  #         poetry install --no-interaction --no-root --verbose
+      - name: Install dependencies
+        if: steps.cached-dependencies.outputs.cache-hit != 'true'
+        run: |
+          poetry install --no-interaction --no-root --verbose
 
-  #     - name: Install project
-  #       run: |
-  #         poetry install --only-root --no-interaction --verbose
+      - name: Install project
+        run: |
+          poetry install --only-root --no-interaction --verbose
 
-  #     - name: Run code quality tests with pre-commit
-  #       if: matrix.python-version == '3.11'
-  #       run: poetry run pre-commit run --all-files --color=always
+      - name: Run code quality tests with pre-commit
+        if: matrix.python-version == '3.11'
+        run: poetry run pre-commit run --all-files --color=always
 
-  #     - name: Run test suite with pytest
-  #       run: poetry run pytest --cov -s
+      - name: Run test suite with pytest
+        run: poetry run pytest --cov -s
 
-  #     # todo coverage
+      # todo coverage
 
   release:
-    # needs: tests
-    if: github.repository == 'afuetterer/services-test2' && github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: tests
+    if: >-
+      github.repository == 'afuetterer/services-test2'
+      && github.event_name == 'push'
+      && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out the repository
         uses: actions/checkout@v3
