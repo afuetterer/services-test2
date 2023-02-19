@@ -116,6 +116,6 @@ jobs:
       - name: Install docs dependencies
         run: poetry install --only=docs
 
-      - run: mkdocs build
+      - run: poetry run mkdocs build
 # TODO: push to test pypi
 # TODO: docs
