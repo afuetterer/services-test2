@@ -78,7 +78,6 @@ jobs:
   release:
     permissions:
       contents: write
-
     # needs: tests
     if: github.repository == 'afuetterer/services-test2' && github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
@@ -117,5 +116,9 @@ jobs:
         run: poetry install --only=docs
 
       - run: poetry run mkdocs build
-# TODO: push to test pypi
-# TODO: docs
+
+      # TODO: deploy docs
+      - run: poetry run mkdocs gh-deploy
+
+      # TODO: push to test pypi
+      - run: poetry publish --build --dry-run
