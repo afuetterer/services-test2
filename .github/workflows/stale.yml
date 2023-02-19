@@ -1,4 +1,4 @@
-name: "Stale"
+name: Stale
 
 on:
   schedule:
@@ -15,8 +15,8 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - name: Close stale Issues
-        uses: actions/stale@v7
+      - name: Close stale issues
+        uses: actions/stale@99b6c709598e2b0d0841cd037aaf1ba07a4410bd # v5
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           stale-issue-message: >-
