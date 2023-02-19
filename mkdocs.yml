@@ -1,8 +1,8 @@
-site_name: services-test
-site_description: services-test
-repo_name: afuetterer/services-test
-repo_url: https://github.com/afuetterer/services-test
-watch: [README.md, src/services_test]
+site_name: services-test2
+site_description: services-test2
+repo_name: afuetterer/services-test2
+repo_url: https://github.com/afuetterer/services-test2
+watch: [README.md, src/services_test2]
 
 nav:
   - Home: index.md
