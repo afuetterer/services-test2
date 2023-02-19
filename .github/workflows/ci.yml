@@ -112,10 +112,8 @@ jobs:
           git config user.email github-actions@github.com
           poetry run semantic-release publish --verbosity=DEBUG
 
-      - run: poetry run mkdocs build
-
-      # TODO: deploy docs
-      - run: poetry run mkdocs gh-deploy
+      - name: Deploy the documentation
+        run: poetry run mkdocs gh-deploy
 
       # TODO: push to test pypi
       - run: poetry publish --build --dry-run
