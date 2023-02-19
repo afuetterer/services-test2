@@ -76,8 +76,6 @@ jobs:
   #     # todo coverage
 
   release:
-    permissions:
-      contents: write
     # needs: tests
     if: github.repository == 'afuetterer/services-test2' && github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
@@ -95,7 +93,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install Poetry
-        uses: snok/install-poetry@v1
+        uses: snok/install-poetry@d45b6d76012debf457ab49dffc7fb7b2efe8071d # v1.3.3
         with:
           virtualenvs-create: true
           virtualenvs-in-project: true
@@ -113,7 +111,13 @@ jobs:
           poetry run semantic-release publish --verbosity=DEBUG
 
       - name: Deploy the documentation
-        run: poetry run mkdocs gh-deploy
+        run: |
+          poetry run mkdocs gh-deploy
 
-      # TODO: push to test pypi
-      - run: poetry publish --build --dry-run
+      - run: |
+          poetry config repositories.testpypi https://test.pypi.org/legacy/
+          poetry config pypi-token.testpypi ${{ secrets.TEST_PYPI_API_TOKEN }}
+
+      - name: Publish package to TestPyPI
+        run: |
+          poetry publish --build --dry-run -r testpypi
