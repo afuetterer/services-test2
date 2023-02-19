@@ -26,10 +26,10 @@ jobs:
 
       # TODO
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@436dbd9100756e97f42f45da571adeebf8270723 # v2.2.0
+        uses: github/codeql-action/init@17573ee1cc1b9d061760f3a006fc4aac4f944fd5 # v2.2.4
         with:
           languages: python
 
       # TODO
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@436dbd9100756e97f42f45da571adeebf8270723 # v2.2.0
+        uses: github/codeql-action/analyze@17573ee1cc1b9d061760f3a006fc4aac4f944fd5 # v2.2.4
