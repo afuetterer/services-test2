@@ -76,6 +76,9 @@ jobs:
   #     # todo coverage
 
   release:
+    permissions:
+      contents: write
+
     # needs: tests
     if: github.repository == 'afuetterer/services-test2' && github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
