@@ -4,29 +4,23 @@ version: 2
 # TODO: update to commit shas
 
 updates:
-  - package-ecosystem: "github-actions"
+  - package-ecosystem: github-actions
     directory: "/"
     schedule:
       interval: daily
     commit-message:
       prefix: chore
       include: scope
-
-  - package-ecosystem: pip
-    directory: "/.github/workflows"
-    schedule:
-      interval: monthly
-    commit-message:
-      prefix: chore
-      include: scope
+    open-pull-requests-limit: 10
 
   - package-ecosystem: pip
     directory: "/"
     schedule:
-      interval: monthly
+      interval: daily
     commit-message:
       prefix: chore
       include: scope
-    versioning-strategy: increase-if-necessary
-    allow:
-      - dependency-type: all
+    # versioning-strategy: increase-if-necessary
+    # allow:
+    #   - dependency-type: all
+    open-pull-requests-limit: 10
