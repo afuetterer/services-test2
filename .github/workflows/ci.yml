@@ -101,7 +101,7 @@ jobs:
           virtualenvs-in-project: true
 
       - name: Install CI dependencies
-        run: poetry install --only=release
+        run: poetry install --with=docs,release
 
       # https://python-semantic-release.readthedocs.io/en/latest/automatic-releases/github-actions.html
       - name: Publish semantic release
@@ -111,9 +111,6 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           poetry run semantic-release publish --verbosity=DEBUG
-
-      - name: Install docs dependencies
-        run: poetry install --only=docs
 
       - run: poetry run mkdocs build
 
