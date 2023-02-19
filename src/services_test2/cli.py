@@ -14,7 +14,7 @@ app = typer.Typer()
 # https://typer.tiangolo.com/tutorial/options/version/
 def version_callback(value: bool) -> None:
     if value:
-        typer.echo(f"services-test, version {__version__}")
+        typer.echo(f"services-test2, version {__version__}")
         raise typer.Exit()
 
 
