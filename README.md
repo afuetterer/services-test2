@@ -32,7 +32,7 @@ $ pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.or
 
 ## License
 
-_services-test2_ is licensed under the terms of the MIT license.
+`services-test2` is licensed under the terms of the MIT license.
 
 <!-- Markdown links -->
 
