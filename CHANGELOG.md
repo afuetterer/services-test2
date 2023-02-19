@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 <!--next-version-placeholder-->
 
+## v0.7.1 (2023-02-19)
+### Fix
+* Something ([`428a86c`](https://github.com/afuetterer/services-test2/commit/428a86c41cbbf5da53019405f4a991f9b95477bf))
+
+**[See all commits in this version](https://github.com/afuetterer/services-test2/compare/0.7.0...0.7.1)**
+
 ## v0.7.0 (2023-02-19)
 ### Feature
 * New attr ([`abfd086`](https://github.com/afuetterer/services-test2/commit/abfd086103929f978bb8b1eb6759c9bab6061ff6))
