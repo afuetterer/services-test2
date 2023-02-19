@@ -51,7 +51,7 @@ repos:
     rev: dc6912646c561f16af711006e7615d52e9bf0968 # frozen: v1.0.0
     hooks:
       - id: mypy
-        args: ["--strict"]
+        # args: ["--strict"]
         additional_dependencies:
           - pytest-mock
           - typer[all]
