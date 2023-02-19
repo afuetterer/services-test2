@@ -59,7 +59,6 @@ jobs:
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: |
           poetry install --no-interaction --no-root --verbose
-          poetry show
 
       # - name: Restore cached dependencies
       #   uses: actions/cache@v3
@@ -84,9 +83,9 @@ jobs:
           pip list
           services-test2 --version
 
-      # - name: Run pre-commit
-      #   if: matrix.python-version == '3.11'
-      #   run: poetry run pre-commit run --all-files --color=always
+      - name: Run pre-commit
+        if: matrix.python-version == '3.11'
+        run: poetry run pre-commit run --all-files --color=always
 
       - name: Run test suite with pytest
         run: poetry run pytest --cov -s
