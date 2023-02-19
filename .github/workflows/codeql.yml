@@ -1,6 +1,6 @@
 # https://github.com/github/codeql-action
 # https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/customizing-code-scanning
-name: "CodeQL"
+name: CodeQL
 
 permissions:
   contents: read
@@ -17,12 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       actions: read
-      contents: read
       security-events: write
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        # TODO: this should updated by dependabot
+        uses: actions/checkout@0b496e91ec7ae4428c3ed2eeb4c3a40df431f2cc # v1.1.0
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
