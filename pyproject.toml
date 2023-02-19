@@ -117,7 +117,7 @@ keep-runtime-typing = true
 # https://python-semantic-release.readthedocs.io/en/latest/configuration.html
 branch = "main"
 commit_subject = "chore: release {version}"
-commit_message = ""
+commit_message = "[skip ci]"
 version_toml = "pyproject.toml:tool.poetry.version"
 version_pattern = [
   'CITATION.cff:^version: {version}$'
