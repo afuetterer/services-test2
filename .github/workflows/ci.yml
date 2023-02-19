@@ -57,7 +57,7 @@ jobs:
       - name: Install dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: |
-          poetry install --no-interaction --no-root
+          poetry install --no-interaction --no-root --verbose
           poetry show
 
       # - name: Restore cached dependencies
@@ -76,8 +76,11 @@ jobs:
 
       - name: Install project
         run: |
-          poetry install --no-interaction
+          poetry install --only-root --no-interaction --verbose
           poetry show
+          pip list
+
+      - run: services-test2 --version
 
       - name: Run pre-commit
         if: matrix.python-version == '3.11'
