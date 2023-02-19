@@ -24,7 +24,7 @@ def test_help_option_displays_help(help_option_name: str) -> None:
 def test_version_option_displays_version(version_option_name: str) -> None:
     result = runner.invoke(app, [version_option_name])
     assert result.exit_code == 0
-    assert "services-test" in result.stdout
+    assert "services-test2" in result.stdout
     assert __version__ in result.stdout
 
 
