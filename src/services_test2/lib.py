@@ -28,6 +28,7 @@ class Hello:
     msg8: str
     msg9: str
     msg10: str
+    msg11: str
 
 
 class World:
