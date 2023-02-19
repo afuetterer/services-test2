@@ -14,6 +14,10 @@ VERSION_OPTION_NAMES = ("-V", "--version")
 def test_help_option_displays_help(help_option_name: str) -> None:
     result = runner.invoke(app, [help_option_name])
     assert result.exit_code == 0
+
+    print()
+    print(result.stdout)
+
     assert "Usage" in result.stdout
     assert "Options" in result.stdout
     assert "--help" in result.stdout

@@ -17,6 +17,7 @@ permissions:
   contents: read
 
 # TODO: harden runner
+# https://github.com/afuetterer/services-test/pull/20
 
 jobs:
   tests:
@@ -52,7 +53,7 @@ jobs:
           path: |
             ~/.cache/pip
             .venv
-          key: venv-python${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
+          key: venv-python${{ matrix.python-version }}-${{ hashFiles('poetry.lock', '.pre-commit-config.yaml') }}
 
       - name: Install dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
@@ -88,7 +89,7 @@ jobs:
         run: poetry run pre-commit run --all-files
 
       - name: Run test suite with pytest
-        run: poetry run pytest --cov
+        run: poetry run pytest --cov -s
 
       # todo coverage
 
