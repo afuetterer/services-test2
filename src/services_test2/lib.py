@@ -19,18 +19,6 @@ def hello_world(msg: str) -> str:
 
 class Hello:
     msg: str
-    msg2: str
-    msg3: str
-    msg4: str
-    msg5: str
-    msg6: str
-    msg7: str
-    msg8: str
-    msg9: str
-    msg10: str
-    msg11: str
-    msg12: str
-    msg13: str
 
 
 class World:
