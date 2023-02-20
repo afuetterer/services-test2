@@ -20,6 +20,8 @@ permissions:
 # https://github.com/afuetterer/services-test/pull/20
 
 jobs:
+  # TODO: move codeql here
+
   tests:
     runs-on: ubuntu-latest
     strategy:
@@ -48,7 +50,6 @@ jobs:
       # https://github.com/snok/install-poetry#workflow-examples-and-tips
       - name: Install Poetry
         if: steps.cached-poetry.outputs.cache-hit != 'true'
-        # TODO
         uses: snok/install-poetry@d45b6d76012debf457ab49dffc7fb7b2efe8071d # v1.3.3
         with:
           virtualenvs-in-project: true
@@ -96,7 +97,6 @@ jobs:
           token: ${{ secrets.RELEASE_TOKEN }}
 
       - name: Set up Python 3.11
-        # TODO
         uses: actions/setup-python@d27e3f3d7c64b4bbf8e4abfb9b63b83e846e0435 # v4.5.0
         with:
           python-version: "3.11"
@@ -110,7 +110,6 @@ jobs:
 
       - name: Install Poetry
         if: steps.cached-poetry.outputs.cache-hit != 'true'
-        # TODO
         uses: snok/install-poetry@d45b6d76012debf457ab49dffc7fb7b2efe8071d # v1.3.3
         with:
           virtualenvs-in-project: true
@@ -141,7 +140,7 @@ jobs:
 
       - name: Deploy the documentation
         run: |
-          poetry run mkdocs gh-deploy
+          poetry run mkdocs gh-deploy --strict --verbose
 
       - name: Publish package to TestPyPI
         run: |
