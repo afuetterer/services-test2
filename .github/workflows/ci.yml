@@ -30,7 +30,6 @@ jobs:
 
     steps:
       - name: Check out the repository
-        # TODO: this should updated by dependabot
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
 
       - name: Set up Python ${{ matrix.python-version }}
@@ -41,6 +40,7 @@ jobs:
       # https://github.com/snok/install-poetry#caching-the-poetry-installation
       - name: Load cached Poetry installation
         id: cached-poetry
+        # TODO
         uses: actions/cache@v3
         with:
           path: ~/.local
@@ -50,12 +50,14 @@ jobs:
 
       - name: Install Poetry
         if: steps.cached-poetry.outputs.cache-hit != 'true'
+        # TODO
         uses: snok/install-poetry@v1
         with:
           virtualenvs-in-project: true
 
       - name: Load cached dependencies
         id: cached-dependencies
+        # TODO
         uses: actions/cache@v3
         with:
           path: |
@@ -97,12 +99,14 @@ jobs:
           token: ${{ secrets.RELEASE_TOKEN }}
 
       - name: Set up Python 3.11
+        # TODO
         uses: actions/setup-python@0ebf233433c08fb9061af664d501c3f3ff0e9e20 # v3.0.0
         with:
           python-version: "3.11"
 
       - name: Load cached Poetry installation
         id: cached-poetry
+        # TODO
         uses: actions/cache@v3
         with:
           path: ~/.local
@@ -110,12 +114,14 @@ jobs:
 
       - name: Install Poetry
         if: steps.cached-poetry.outputs.cache-hit != 'true'
+        # TODO
         uses: snok/install-poetry@v1
         with:
           virtualenvs-in-project: true
 
       - name: Load cached dependencies
         id: cached-dependencies
+        # TODO
         uses: actions/cache@v3
         with:
           path: |
