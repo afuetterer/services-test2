@@ -43,12 +43,12 @@ repos:
           )$
 
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: 8c0354fe907e26a7358c64555d01a7f6e90356ba # frozen: v0.0.247
+    rev: a794b11a962f22e77e48eba5c50d505b7cd7e0b1 # frozen: v0.0.248
     hooks:
       - id: ruff
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: dc6912646c561f16af711006e7615d52e9bf0968 # frozen: v1.0.0
+    rev: 17a61c4f7a7cd6a28daa5c4b88c725030e45e641 # frozen: v1.0.1
     hooks:
       - id: mypy
         # args: ["--strict"]
