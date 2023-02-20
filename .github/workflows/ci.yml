@@ -33,32 +33,29 @@ jobs:
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@d09bd5e6005b175076f227b13d9730d56e9dcfcb # v4.0.0
         with:
           python-version: ${{ matrix.python-version }}
 
       # https://github.com/snok/install-poetry#caching-the-poetry-installation
       - name: Load cached Poetry installation
         id: cached-poetry
-        # TODO
-        uses: actions/cache@v3
+        uses: actions/cache@0865c47f36e68161719c5b124609996bb5c40129 # v3.0.5
         with:
           path: ~/.local
           key: poetry-0
 
       # https://github.com/snok/install-poetry#workflow-examples-and-tips
-
       - name: Install Poetry
         if: steps.cached-poetry.outputs.cache-hit != 'true'
         # TODO
-        uses: snok/install-poetry@v1
+        uses: snok/install-poetry@fdde2e959030c136a4108a030377df3f06cacc3a # v1.2.0
         with:
           virtualenvs-in-project: true
 
       - name: Load cached dependencies
         id: cached-dependencies
-        # TODO
-        uses: actions/cache@v3
+        uses: actions/cache@0865c47f36e68161719c5b124609996bb5c40129 # v3.0.5
         with:
           path: |
             ~/.cache/pip
@@ -100,14 +97,13 @@ jobs:
 
       - name: Set up Python 3.11
         # TODO
-        uses: actions/setup-python@0ebf233433c08fb9061af664d501c3f3ff0e9e20 # v3.0.0
+        uses: actions/setup-python@d09bd5e6005b175076f227b13d9730d56e9dcfcb # v4.0.0
         with:
           python-version: "3.11"
 
       - name: Load cached Poetry installation
         id: cached-poetry
-        # TODO
-        uses: actions/cache@v3
+        uses: actions/cache@0865c47f36e68161719c5b124609996bb5c40129 # v3.0.5
         with:
           path: ~/.local
           key: poetry-0
@@ -115,14 +111,13 @@ jobs:
       - name: Install Poetry
         if: steps.cached-poetry.outputs.cache-hit != 'true'
         # TODO
-        uses: snok/install-poetry@v1
+        uses: snok/install-poetry@fdde2e959030c136a4108a030377df3f06cacc3a # v1.2.0
         with:
           virtualenvs-in-project: true
 
       - name: Load cached dependencies
         id: cached-dependencies
-        # TODO
-        uses: actions/cache@v3
+        uses: actions/cache@0865c47f36e68161719c5b124609996bb5c40129 # v3.0.5
         with:
           path: |
             ~/.cache/pip
