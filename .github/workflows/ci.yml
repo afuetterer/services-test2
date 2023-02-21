@@ -54,8 +54,9 @@ jobs:
     strategy:
       matrix:
         python-version:
+          - "3.8"
           - "3.11"
-          # - "3.8"
+          - "3.12-dev"
 
     steps:
       - name: Harden Runner
@@ -64,8 +65,10 @@ jobs:
           disable-sudo: true
           egress-policy: block
           allowed-endpoints: >
+            files.pythonhosted.org:443
             github.com:443
             pypi.org:443
+            test.pypi.org:443
 
       - name: Check out the repository
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
