@@ -35,11 +35,11 @@ jobs:
         with:
           extra-args: --freeze
 
-      # https://github.com/creyD/prettier_action#usage
+      # https://github.com/actionsx/prettier#usage
       - name: Prettify code
-        uses: creyD/prettier_action@31355f8eef017f8aeba2e0bc09d8502b13dbbad1 # v4.3
+        uses: actionsx/prettier@8b6d14bd1241e743fa9a6112b43d691d1890a8e9 # v2
         with:
-          prettier_options: --write .pre-commit-config.yaml
+          args: --write .pre-commit-config.yaml
 
       - uses: peter-evans/create-pull-request@2b011faafdcbc9ceb11414d64d0573f37c774b04 # v4.2.3
         with:
