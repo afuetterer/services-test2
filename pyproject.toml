@@ -19,6 +19,8 @@ classifiers = [
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+
+    # add more here?
 ]
 
 [tool.poetry.dependencies]
@@ -83,6 +85,7 @@ parallel = true
 source = ["src/services_test2"]
 
 [tool.coverage.paths]
+# TODO tox issue?
 source = [
   "src/services_test2",
   "*/site-packages/services_test2",
@@ -120,17 +123,25 @@ keep-runtime-typing = true
 # https://python-semantic-release.readthedocs.io/en/latest/configuration.html
 branch = "main"
 commit_subject = "chore: release {version}"
+# TODO: skip ci or not?
+# run CI on tagged commits, skip tests? but run docs and publish?
 commit_message = "[skip ci]"
 version_toml = "pyproject.toml:tool.poetry.version"
 version_pattern = [
   'CITATION.cff:^version: {version}$'
 ]
+# TODO: does this work?
 upload_to_pypi = false
 upload_to_release = true
 build_command = "poetry build"
 # Update release date in CITATION.cff
-pre_commit_command = '''sed -i -r "s/(date-released: ).*/\1$(date '+%Y-%m-%d')/" CITATION.cff'''
+pre_commit_command = '''
+sed -i -r "s/(date-released: ).*/\1$(date '+%Y-%m-%d')/" CITATION.cff &&
+sed -i -r "s/^## v/## /" CHANGELOG.md
+'''
 changelog_components = "semantic_release.changelog.changelog_headers,semantic_release.changelog.compare_url"
+# TODO: test if this really works
 major_on_zero = false
 hvcs = "github"
+# TODO: how to get rid of v prefix in changelog?
 tag_format = "{version}"
