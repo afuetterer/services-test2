@@ -4,7 +4,19 @@ All notable changes to this project will be documented in this file.
 
 <!--next-version-placeholder-->
 
-## v0.7.2 (2023-02-23)
+## v0.9.0 (2023-02-23)
+### Feature
+* Break stuff ([`8c27035`](https://github.com/afuetterer/services-test2/commit/8c2703549b9a0e23a6816ea9301184162eeaa62e))
+
+### Breaking
+* break stuff ([`8c27035`](https://github.com/afuetterer/services-test2/commit/8c2703549b9a0e23a6816ea9301184162eeaa62e))
+
+### Documentation
+* Fix ([`576867b`](https://github.com/afuetterer/services-test2/commit/576867bff23011c41d67b1820aa5ad9fbe5bfb00))
+
+**[See all commits in this version](https://github.com/afuetterer/services-test2/compare/0.8.0...0.9.0)**
+
+## 0.7.2 (2023-02-23)
 ### Fix
 * Attr ([`e0e68dc`](https://github.com/afuetterer/services-test2/commit/e0e68dc3933731a427c9569bf052d883589fa319))
 
