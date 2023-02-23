@@ -1,10 +1,10 @@
-# TODO rename
-name: Stale
+name: Close stale issues
 
 on:
   schedule:
     # run once a month at midnight of the first day of the month
     - cron: 0 0 1 * *
+  workflow_dispatch:
 
 permissions:
   contents: read
