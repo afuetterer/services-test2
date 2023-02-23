@@ -4,13 +4,19 @@ All notable changes to this project will be documented in this file.
 
 <!--next-version-placeholder-->
 
-## v0.7.1 (2023-02-19)
+## v0.7.2 (2023-02-23)
+### Fix
+* Attr ([`e0e68dc`](https://github.com/afuetterer/services-test2/commit/e0e68dc3933731a427c9569bf052d883589fa319))
+
+**[See all commits in this version](https://github.com/afuetterer/services-test2/compare/0.7.1...0.7.2)**
+
+## 0.7.1 (2023-02-19)
 ### Fix
 * Something ([`428a86c`](https://github.com/afuetterer/services-test2/commit/428a86c41cbbf5da53019405f4a991f9b95477bf))
 
 **[See all commits in this version](https://github.com/afuetterer/services-test2/compare/0.7.0...0.7.1)**
 
-## v0.7.0 (2023-02-19)
+## 0.7.0 (2023-02-19)
 ### Feature
 * New attr ([`abfd086`](https://github.com/afuetterer/services-test2/commit/abfd086103929f978bb8b1eb6759c9bab6061ff6))
 
@@ -19,13 +25,13 @@ All notable changes to this project will be documented in this file.
 
 **[See all commits in this version](https://github.com/afuetterer/services-test2/compare/0.6.1...0.7.0)**
 
-## v0.6.1 (2023-02-19)
+## 0.6.1 (2023-02-19)
 ### Fix
 * Something ([`3c37ef9`](https://github.com/afuetterer/services-test2/commit/3c37ef9f23697f50fe96f7dd5c811d2406ecebf2))
 
 **[See all commits in this version](https://github.com/afuetterer/services-test2/compare/0.6.0...0.6.1)**
 
-## v0.6.0 (2023-02-19)
+## 0.6.0 (2023-02-19)
 ### Feature
 * Add attr ([`fd1ba41`](https://github.com/afuetterer/services-test2/commit/fd1ba41d5544d175161f0cfc9b7bd79bca1ba444))
 
@@ -35,7 +41,7 @@ All notable changes to this project will be documented in this file.
 
 **[See all commits in this version](https://github.com/afuetterer/services-test2/compare/0.5.0...0.6.0)**
 
-## v0.5.0 (2023-02-16)
+## 0.5.0 (2023-02-16)
 ### Feature
 * Add attr to class ([`ed07855`](https://github.com/afuetterer/services-test2/commit/ed07855065341fca78cdc3a8700a0a94caf6471f))
 
@@ -44,42 +50,42 @@ All notable changes to this project will be documented in this file.
 
 **[See all commits in this version](https://github.com/afuetterer/services-test2/compare/0.4.3...0.5.0)**
 
-## v0.4.3 (2023-02-16)
+## 0.4.3 (2023-02-16)
 ### Fix
 * Fix something with class ([`1afdf28`](https://github.com/afuetterer/services-test2/commit/1afdf28976d3c458a98dda079f8356d4dfc85803))
 
 **[See all commits in this version](https://github.com/afuetterer/services-test2/compare/0.4.2...0.4.3)**
 
-## v0.4.2 (2023-02-16)
+## 0.4.2 (2023-02-16)
 ### Fix
 * Add new attr to class ([`1e7b2f3`](https://github.com/afuetterer/services-test2/commit/1e7b2f3f50ad99626336ca9cafd78705bcc5bc26))
 
 **[See all commits in this version](https://github.com/afuetterer/services-test2/compare/v0.4.1...v0.4.2)**
 
-## v0.4.1 (2023-02-16)
+## 0.4.1 (2023-02-16)
 ### Fix
 * Add fix to class ([`6b391e1`](https://github.com/afuetterer/services-test2/commit/6b391e12d079e742242dd323dfdd352655068ac9))
 
 **[See all commits in this version](https://github.com/afuetterer/services-test2/compare/v0.4.0...v0.4.1)**
 
-## v0.4.0 (2023-02-16)
+## 0.4.0 (2023-02-16)
 ### Feature
 * Add new func to class ([`6f44525`](https://github.com/afuetterer/services-test2/commit/6f445250ecb3e9b4dca0c7fe94aa4e5539280182))
 
 **[See all commits in this version](https://github.com/afuetterer/services-test2/compare/v0.3.0...v0.4.0)**
 
-## v0.3.0 (2023-02-13)
+## 0.3.0 (2023-02-13)
 ### Feature
 * Add func to class ([`ba8e2af`](https://github.com/afuetterer/services-test2/commit/ba8e2af78a3449bf2293493b667cbc22b81ad6b3))
 
 **[See all commits in this version](https://github.com/afuetterer/services-test2/compare/v0.2.0...v0.3.0)**
 
-## v0.2.0 (2023-02-13)
+## 0.2.0 (2023-02-13)
 ### Feature
 * Add new attr to class ([`a8c16b5`](https://github.com/afuetterer/services-test2/commit/a8c16b5cbad036887289b770fbfa31e5cd3792c7))
 
 **[See all commits in this version](https://github.com/afuetterer/services-test2/compare/v0.1.0...v0.2.0)**
 
-## v0.1.0 (2023-02-13)
+## 0.1.0 (2023-02-13)
 ### Feature
 * Add functionality to class ([`264046c`](https://github.com/afuetterer/services-test2/commit/264046cd60d520feddcdf77a428a653cde74aad4))
