@@ -73,53 +73,14 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@d27e3f3d7c64b4bbf8e4abfb9b63b83e846e0435 # v4.5.0
+      - name: Install poetry
+        run: pipx install poetry
+      - uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
-
-      # https://github.com/snok/install-poetry#caching-the-poetry-installation
-      - name: Load cached Poetry installation
-        id: cached-poetry
-        uses: actions/cache@69d9d449aced6a2ede0bc19182fadc3a0a42d2b0 # v3.2.6
-        with:
-          path: ~/.local
-          # TODO add python version here?
-          key: poetry-0
-
-      # https://github.com/snok/install-poetry#workflow-examples-and-tips
-      - name: Install Poetry
-        if: steps.cached-poetry.outputs.cache-hit != 'true'
-        uses: snok/install-poetry@d45b6d76012debf457ab49dffc7fb7b2efe8071d # v1.3.3
-        with:
-          virtualenvs-in-project: true
-
-      - name: Load cached dependencies
-        id: cached-dependencies
-        uses: actions/cache@69d9d449aced6a2ede0bc19182fadc3a0a42d2b0 # v3.2.6
-        with:
-          # TODO
-          path: |
-            ~/.cache/pip
-            ~/.cache/pre-commit
-            .venv
-          key: venv-python${{ matrix.python-version }}-${{ hashFiles('poetry.lock', '.pre-commit-config.yaml') }}
-
-      - name: Install dependencies
-        if: steps.cached-dependencies.outputs.cache-hit != 'true'
-        run: |
-          poetry install --no-interaction --no-root --verbose
-
-      - name: Install project
-        run: |
-          poetry install --only-root --no-interaction --verbose
-
-      - name: Run code quality tests with pre-commit
-        if: matrix.python-version == '3.11'
-        run: poetry run pre-commit run --all-files --color=always
-
-      - name: Run test suite with pytest
-        run: poetry run pytest --cov -s
+          cache: "poetry"
+      - run: poetry install
+      - run: poetry run pytest --cov
 
       # TODO: code coverage badge is not shown on pypi
 
