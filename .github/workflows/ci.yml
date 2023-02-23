@@ -1,5 +1,4 @@
 # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
-# TODO rename
 name: CI
 
 on:
@@ -52,6 +51,7 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         python-version:
           - "3.8"
@@ -84,6 +84,7 @@ jobs:
         uses: actions/cache@69d9d449aced6a2ede0bc19182fadc3a0a42d2b0 # v3.2.6
         with:
           path: ~/.local
+          # TODO add python version here?
           key: poetry-0
 
       # https://github.com/snok/install-poetry#workflow-examples-and-tips
@@ -97,6 +98,7 @@ jobs:
         id: cached-dependencies
         uses: actions/cache@69d9d449aced6a2ede0bc19182fadc3a0a42d2b0 # v3.2.6
         with:
+          # TODO
           path: |
             ~/.cache/pip
             ~/.cache/pre-commit
@@ -154,6 +156,7 @@ jobs:
         uses: actions/cache@69d9d449aced6a2ede0bc19182fadc3a0a42d2b0 # v3.2.6
         with:
           path: ~/.local
+          # add python version here?
           key: poetry-0
 
       - name: Install Poetry
@@ -166,11 +169,14 @@ jobs:
         id: cached-dependencies
         uses: actions/cache@69d9d449aced6a2ede0bc19182fadc3a0a42d2b0 # v3.2.6
         with:
+          # TODO: cache pip?
           path: |
             ~/.cache/pip
             ~/.cache/pre-commit
             .venv
-          key: venv-python${{ matrix.python-version }}-${{ hashFiles('poetry.lock', '.pre-commit-config.yaml') }}
+
+          # TODO: put 3.11 here or not?
+          key: venv-python-3.11-${{ hashFiles('poetry.lock', '.pre-commit-config.yaml') }}
 
       - name: Install dependencies
         if: steps.cached-dependencies.outputs.cache-hit != 'true'
@@ -186,9 +192,13 @@ jobs:
           git config user.email github-actions@github.com
           poetry run semantic-release publish --verbosity=DEBUG
 
+      # TODO: run only if tag?
+
       - name: Deploy the documentation
         run: |
           poetry run mkdocs gh-deploy --strict --verbose
+
+      # TODO: run only if tag?
 
       - name: Publish package to TestPyPI
         run: |
