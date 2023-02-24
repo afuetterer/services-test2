@@ -4,6 +4,8 @@ name: CI
 on:
   push:
     branches: [main]
+  release:
+    types: [created]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -149,14 +151,12 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           poetry run semantic-release publish --verbosity=DEBUG
 
-      # TODO: run only if tag?
-
       - name: Deploy the documentation
+        if: github.event_name == 'release'
         run: |
           poetry run mkdocs gh-deploy --strict --verbose
 
       # TODO: run only if tag?
-
       - name: Publish package to TestPyPI
         run: |
           poetry config repositories.testpypi https://test.pypi.org/legacy/
