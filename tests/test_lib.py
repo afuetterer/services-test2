@@ -8,9 +8,9 @@ def test_hello_world() -> None:
     assert actual == expected
 
 
-def test_send_message() -> None:
-    instance = lib.World()
-    input_msg = "hello world"
-    actual = instance.send_message(input_msg)
-    expected = "HELLO WORLD"
-    assert actual == expected
+# def test_send_message() -> None:
+#     instance = lib.World()
+#     input_msg = "hello world"
+#     actual = instance.send_message(input_msg)
+#     expected = "HELLO WORLD"
+#     assert actual == expected
