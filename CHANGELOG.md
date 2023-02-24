@@ -8,7 +8,13 @@ Available releases: <https://github.com/afuetterer/services-test2/releases>
 
 <!--next-version-placeholder-->
 
-## v0.12.1 (2023-02-24)
+## v0.12.2 (2023-02-24)
+### Fix
+* Attr ([`0a642ce`](https://github.com/afuetterer/services-test2/commit/0a642ce7bdf5190240a2b6779f22506d3aa405d9))
+
+**[See all commits in this version](https://github.com/afuetterer/services-test2/compare/0.12.1...0.12.2)**
+
+## 0.12.1 (2023-02-24)
 ### Fix
 * Something ([`62dbcba`](https://github.com/afuetterer/services-test2/commit/62dbcbafce2adcc887c6dd39aa8a47901652fac0))
 
