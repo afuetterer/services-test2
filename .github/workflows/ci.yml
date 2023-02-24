@@ -136,7 +136,7 @@ jobs:
           cache: "poetry"
 
       - name: Install dependencies with poetry
-        run: poetry install --no-interaction --verbose --with=release
+        run: poetry install --no-interaction --verbose --only=release
 
       # https://python-semantic-release.readthedocs.io/en/latest/automatic-releases/github-actions.html
       - name: Publish semantic release
