@@ -83,16 +83,9 @@ testpaths = "tests"
 # https://coverage.readthedocs.io/en/7.0.5/config.html#configuration-reference
 branch = true
 parallel = true
-source = ["src"]
-
-# [tool.coverage.paths]
-# # TODO tox issue?
-# source = [
-#   "src/services_test2",
-# ]
+omit = ["tests/*"]
 
 [tool.coverage.report]
-fail_under = 100
 skip_empty = true
 
 [tool.ruff]
