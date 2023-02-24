@@ -85,10 +85,12 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: "poetry"
 
-      - run: poetry install --no-interaction --verbose
+      - name: Install dependencies with poetry
+        run: poetry install --no-interaction --verbose
 
       # https://github.com/pre-commit/action
       - name: Run code quality tests with pre-commit
+        if: matrix.python-version == '3.11'
         uses: pre-commit/action@646c83fcd040023954eafda54b4db0192ce70507 # v3.0.0
 
       - name: Run test suite with pytest
@@ -135,12 +137,8 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: "poetry"
 
-      - run: poetry install --no-interaction --verbose --with=docs,release
-
-      # - name: Install dependencies
-      #   if: steps.cached-dependencies.outputs.cache-hit != 'true'
-      #   run: |
-      #     poetry install --no-interaction --verbose --with=docs,release
+      - name: Install dependencies with poetry
+        run: poetry install --no-interaction --verbose --with=docs,release
 
       # https://python-semantic-release.readthedocs.io/en/latest/automatic-releases/github-actions.html
       - name: Publish semantic release
@@ -156,8 +154,8 @@ jobs:
         run: |
           poetry run mkdocs gh-deploy --strict --verbose
 
-      # TODO: run only if tag?
       - name: Publish package to TestPyPI
+        if: github.event_name == 'release'
         run: |
           poetry config repositories.testpypi https://test.pypi.org/legacy/
           poetry config pypi-token.testpypi ${{ secrets.TEST_PYPI_API_TOKEN }}
