@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file.
 
 <!--next-version-placeholder-->
 
-## v0.11.3 (2023-02-24)
+## v0.11.4 (2023-02-24)
+### Fix
+* Attr 1 ([`514576c`](https://github.com/afuetterer/services-test2/commit/514576cbc0b77198221138f9075e5990b0d63ae1))
+
+**[See all commits in this version](https://github.com/afuetterer/services-test2/compare/0.11.3...0.11.4)**
+
+## 0.11.3 (2023-02-24)
 ### Fix
 * Attr 3 ([`38bfc83`](https://github.com/afuetterer/services-test2/commit/38bfc8399891193b7e2186f43af6daad35326b6e))
 
