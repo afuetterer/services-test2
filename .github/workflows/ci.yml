@@ -98,13 +98,20 @@ jobs:
         uses: pre-commit/action@646c83fcd040023954eafda54b4db0192ce70507 # v3.0.0
 
       - name: Run test suite with pytest
-        run: poetry run pytest --cov
+        # run: poetry run pytest --cov
+        run: pytest --cov --cov-report=xml
 
-      # TODO: code coverage badge is not shown on pypi
+      # https://github.com/actions/upload-artifact
+      - name: Upload coverage.xml report
+        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
+        with:
+          name: coverage.xml
+          path: coverage.xml
+          if-no-files-found: ignore
+          retention-days: 7
 
-      # - name: Code coverage
-      #   if: matrix.python-version == '3.11'
-      #   run: poetry run
+      # TODO: Badge
+      # TODO: Coverage
 
   release:
     needs: [tests] #, codeql-analysis]
