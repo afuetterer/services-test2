@@ -76,21 +76,20 @@ show_error_codes = true
 show_error_context = true
 
 [tool.pytest.ini_options]
+# https://docs.pytest.org/en/stable/customize.html
 testpaths = "tests"
 
 [tool.coverage.run]
 # https://coverage.readthedocs.io/en/7.0.5/config.html#configuration-reference
 branch = true
 parallel = true
-source = ["src/services_test2"]
+source = ["src"]
 
-[tool.coverage.paths]
-# TODO tox issue?
-source = [
-  "src/services_test2",
-  "*/site-packages/services_test2",
-  "*/src/services_test2"
-]
+# [tool.coverage.paths]
+# # TODO tox issue?
+# source = [
+#   "src/services_test2",
+# ]
 
 [tool.coverage.report]
 fail_under = 100
@@ -124,8 +123,6 @@ keep-runtime-typing = true
 branch = "main"
 commit_author = "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
 commit_subject = "chore: release {version}"
-# TODO: skip ci or not?
-# run CI on tagged commits, skip tests? but run docs and publish?
 commit_message = "[skip ci]"
 version_toml = "pyproject.toml:tool.poetry.version"
 version_pattern = [
