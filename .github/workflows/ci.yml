@@ -98,13 +98,42 @@ jobs:
         uses: pre-commit/action@646c83fcd040023954eafda54b4db0192ce70507 # v3.0.0
 
       - name: Run test suite with pytest
-        run: poetry run pytest --cov
+        # run: poetry run pytest --cov
+        run: poetry run pytest --cov --cov-report=xml:coverage.xml
 
-      # TODO: code coverage badge is not shown on pypi
+      # https://github.com/actions/upload-artifact
+      - name: Upload coverage.xml report
+        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
+        with:
+          name: coverage.xml
+          path: coverage.xml
+          if-no-files-found: ignore
+          retention-days: 1
 
-      # - name: Code coverage
-      #   if: matrix.python-version == '3.11'
-      #   run: poetry run
+  coverage:
+    needs: [tests]
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      # TODO: harden runner
+
+      # https://github.com/actions/download-artifact
+      - name: Download coverage.xml report
+        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3.02
+        with:
+          name: coverage.xml
+
+      # https://github.com/MishaKav/pytest-coverage-comment
+      - name: Publish coverage report comment
+        uses: MishaKav/pytest-coverage-comment@e2c4b20b8a59537ce08ed767c5bb63581e0651ae # v1.1.45
+        if: github.repository == 'afuetterer/services-test2'
+        with:
+          title: "Coverage"
+          report-only-changed-files: true
+          pytest-xml-coverage-path: ./coverage.xml
+
+      # TODO: Badge
 
   release:
     needs: [tests] #, codeql-analysis]
@@ -136,7 +165,7 @@ jobs:
           cache: "poetry"
 
       - name: Install dependencies with poetry
-        run: poetry install --no-interaction --verbose --with=release
+        run: poetry install --no-interaction --verbose --only=release
 
       # https://python-semantic-release.readthedocs.io/en/latest/automatic-releases/github-actions.html
       - name: Publish semantic release

@@ -23,7 +23,12 @@ jobs:
       - name: Harden Runner
         uses: step-security/harden-runner@c8454efe5d0bdefd25384362fe217428ca277d57 # v2.2.0
         with:
-          egress-policy: audit
+          disable-sudo: true
+          egress-policy: block
+          allowed-endpoints: >
+            files.pythonhosted.org:443
+            github.com:443
+            pypi.org:443
 
       - name: Check out the repository
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
@@ -39,7 +44,7 @@ jobs:
           cache: "poetry"
 
       - name: Install dependencies with poetry
-        run: poetry install --no-interaction --verbose --with=docs
+        run: poetry install --no-interaction --verbose --only=docs
 
       - name: Build the documentation
         run: poetry run mkdocs build --verbose
@@ -54,7 +59,13 @@ jobs:
       - name: Harden Runner
         uses: step-security/harden-runner@c8454efe5d0bdefd25384362fe217428ca277d57 # v2.2.0
         with:
-          egress-policy: audit
+          disable-sudo: true
+          egress-policy: block
+          allowed-endpoints: >
+            files.pythonhosted.org:443
+            github.com:443
+            pypi.org:443
+            test.pypi.org:443
 
       - name: Check out the repository
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
