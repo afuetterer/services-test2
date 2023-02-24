@@ -4,11 +4,8 @@ name: CI
 on:
   push:
     branches: [main]
-  # release:
-  #   types: [created]
   pull_request:
     branches: [main]
-  workflow_dispatch:
 
 # https://docs.github.com/en/actions/using-jobs/using-concurrency
 concurrency:
@@ -102,25 +99,21 @@ jobs:
       #   if: matrix.python-version == '3.11'
       #   run: poetry run
 
-  release:
+  build:
     needs: [tests] #, codeql-analysis]
     if: >-
       github.repository == 'afuetterer/services-test2'
       && github.event_name == 'push'
       && github.ref == 'refs/heads/main'
+
+    # TODO: || github.ref == 'refs/heads/main' tags release?
+
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@c8454efe5d0bdefd25384362fe217428ca277d57 # v2.2.0
         with:
-          disable-sudo: true
-          egress-policy: block
-          allowed-endpoints: >
-            api.github.com:443
-            files.pythonhosted.org:443
-            github.com:443
-            pypi.org:443
-            uploads.github.com:443
+          egress-policy: audit
 
       - name: Check out the repository
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
@@ -149,14 +142,25 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           poetry run semantic-release publish --verbosity=DEBUG
 
-      - name: Deploy the documentation
-        if: startsWith(github.ref, 'refs/tags/')
-        run: |
-          poetry run mkdocs gh-deploy --strict --verbose
+      # TODO fix conditional run of these
+      # https://github.com/marketplace/actions/python-coverage-comment
 
-      - name: Publish package to TestPyPI
-        if: github.event_name == 'release'
-        run: |
-          poetry config repositories.testpypi https://test.pypi.org/legacy/
-          poetry config pypi-token.testpypi ${{ secrets.TEST_PYPI_API_TOKEN }}
-          poetry publish --ansi --build --repository=testpypi --username=__token__ --skip-existing
+      # DO NOT run actions/checkout here, for security reasons
+      # For details, refer to https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+
+      # https://github.com/pypa/gh-action-pypi-publish
+
+      # https://github.com/mosaicml/composer/blob/dev/.github/workflows/release.yaml
+
+      # if: github.repository == 'jacobtomlinson/is-number' && github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+      # - name: Deploy the documentation
+      #   if: startsWith(github.ref, 'refs/tags')
+      #   run: |
+      #     poetry run mkdocs gh-deploy --strict --verbose
+
+      # - name: Publish package to TestPyPI
+      #   if: github.event_name == 'release'
+      #   run: |
+      #     poetry config repositories.testpypi https://test.pypi.org/legacy/
+      #     poetry config pypi-token.testpypi ${{ secrets.TEST_PYPI_API_TOKEN }}
+      #     poetry publish --ansi --build --repository=testpypi --username=__token__ --skip-existing
