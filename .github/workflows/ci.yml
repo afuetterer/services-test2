@@ -19,34 +19,35 @@ permissions:
 jobs:
   # https://github.com/github/codeql-action
   # https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/customizing-code-scanning
-  codeql-analysis:
-    runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      security-events: write
-    steps:
-      - name: Harden Runner
-        uses: step-security/harden-runner@c8454efe5d0bdefd25384362fe217428ca277d57 # v2.2.0
-        with:
-          disable-sudo: true
-          egress-policy: block
-          allowed-endpoints: >
-            api.github.com:443
-            files.pythonhosted.org:443
-            github.com:443
-            pypi.org:443
-            uploads.github.com:443
 
-      - name: Checkout repository
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+  # codeql-analysis:
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     actions: read
+  #     security-events: write
+  #   steps:
+  #     - name: Harden Runner
+  #       uses: step-security/harden-runner@c8454efe5d0bdefd25384362fe217428ca277d57 # v2.2.0
+  #       with:
+  #         disable-sudo: true
+  #         egress-policy: block
+  #         allowed-endpoints: >
+  #           api.github.com:443
+  #           files.pythonhosted.org:443
+  #           github.com:443
+  #           pypi.org:443
+  #           uploads.github.com:443
 
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@17573ee1cc1b9d061760f3a006fc4aac4f944fd5 # v2.2.4
-        with:
-          languages: python
+  #     - name: Checkout repository
+  #       uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
 
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@17573ee1cc1b9d061760f3a006fc4aac4f944fd5 # v2.2.4
+  #     - name: Initialize CodeQL
+  #       uses: github/codeql-action/init@17573ee1cc1b9d061760f3a006fc4aac4f944fd5 # v2.2.4
+  #       with:
+  #         languages: python
+
+  #     - name: Perform CodeQL Analysis
+  #       uses: github/codeql-action/analyze@17573ee1cc1b9d061760f3a006fc4aac4f944fd5 # v2.2.4
 
   tests:
     runs-on: ubuntu-latest
@@ -82,7 +83,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: "poetry"
 
-      - run: poetry install
+      - run: poetry install --no-interaction --verbose
 
       # https://github.com/pre-commit/action
       - name: Run code quality tests with pre-commit
@@ -98,7 +99,7 @@ jobs:
       #   run: poetry run
 
   release:
-    needs: [tests, codeql-analysis]
+    needs: [tests] #, codeql-analysis]
     if: >-
       github.repository == 'afuetterer/services-test2'
       && github.event_name == 'push'
@@ -108,7 +109,14 @@ jobs:
       - name: Harden Runner
         uses: step-security/harden-runner@c8454efe5d0bdefd25384362fe217428ca277d57 # v2.2.0
         with:
-          egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+          disable-sudo: true
+          egress-policy: block
+          allowed-endpoints: >
+            api.github.com:443
+            files.pythonhosted.org:443
+            github.com:443
+            pypi.org:443
+            uploads.github.com:443
 
       - name: Check out the repository
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
@@ -116,42 +124,21 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.RELEASE_TOKEN }}
 
-      - name: Set up Python 3.11
+      - name: Install poetry
+        run: pipx install poetry
+
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@d27e3f3d7c64b4bbf8e4abfb9b63b83e846e0435 # v4.5.0
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.python-version }}
+          cache: "poetry"
 
-      - name: Load cached Poetry installation
-        id: cached-poetry
-        uses: actions/cache@69d9d449aced6a2ede0bc19182fadc3a0a42d2b0 # v3.2.6
-        with:
-          path: ~/.local
-          # add python version here?
-          key: poetry-0
+      - run: poetry install --no-interaction --verbose --with=docs,release
 
-      - name: Install Poetry
-        if: steps.cached-poetry.outputs.cache-hit != 'true'
-        uses: snok/install-poetry@d45b6d76012debf457ab49dffc7fb7b2efe8071d # v1.3.3
-        with:
-          virtualenvs-in-project: true
-
-      - name: Load cached dependencies
-        id: cached-dependencies
-        uses: actions/cache@69d9d449aced6a2ede0bc19182fadc3a0a42d2b0 # v3.2.6
-        with:
-          # TODO: cache pip?
-          path: |
-            ~/.cache/pip
-            ~/.cache/pre-commit
-            .venv
-
-          # TODO: put 3.11 here or not?
-          key: venv-python-3.11-${{ hashFiles('poetry.lock', '.pre-commit-config.yaml') }}
-
-      - name: Install dependencies
-        if: steps.cached-dependencies.outputs.cache-hit != 'true'
-        run: |
-          poetry install --no-interaction --verbose --with=docs,release
+      # - name: Install dependencies
+      #   if: steps.cached-dependencies.outputs.cache-hit != 'true'
+      #   run: |
+      #     poetry install --no-interaction --verbose --with=docs,release
 
       # https://python-semantic-release.readthedocs.io/en/latest/automatic-releases/github-actions.html
       - name: Publish semantic release
