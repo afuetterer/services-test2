@@ -16,6 +16,8 @@ permissions:
 jobs:
   docs:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       # https://github.com/step-security/harden-runner
       - name: Harden Runner
