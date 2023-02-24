@@ -98,7 +98,6 @@ jobs:
         uses: pre-commit/action@646c83fcd040023954eafda54b4db0192ce70507 # v3.0.0
 
       - name: Run test suite with pytest
-        # run: poetry run pytest --cov
         run: poetry run pytest --cov --cov-report=xml:cobertura.xml --junitxml=junit.xml
 
       # https://github.com/actions/upload-artifact
@@ -129,8 +128,6 @@ jobs:
         with:
           name: coverage-data
 
-      - run: ls -la
-
       # https://github.com/MishaKav/pytest-coverage-comment
       - name: Publish coverage report comment
         uses: MishaKav/pytest-coverage-comment@e2c4b20b8a59537ce08ed767c5bb63581e0651ae # v1.1.45
@@ -138,7 +135,7 @@ jobs:
         with:
           title: Coverage report
           pytest-xml-coverage-path: ./cobertura.xml
-          junitxml-title: Test summary
+          junitxml-title: Summary
           junitxml-path: ./junit.xml
 
       # TODO: Badge
