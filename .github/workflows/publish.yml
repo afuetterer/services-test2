@@ -14,20 +14,14 @@ permissions:
   contents: read
 
 jobs:
-  publish:
+  docs:
     runs-on: ubuntu-latest
     steps:
       # https://github.com/step-security/harden-runner
       - name: Harden Runner
         uses: step-security/harden-runner@c8454efe5d0bdefd25384362fe217428ca277d57 # v2.2.0
         with:
-          disable-sudo: true
-          egress-policy: block
-          allowed-endpoints: >
-            files.pythonhosted.org:443
-            github.com:443
-            pypi.org:443
-            test.pypi.org:443
+          egress-policy: audit
 
       - name: Check out the repository
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
@@ -35,6 +29,7 @@ jobs:
       - name: Install poetry
         run: pipx install poetry
 
+      # https://github.com/actions/setup-python
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@d27e3f3d7c64b4bbf8e4abfb9b63b83e846e0435 # v4.5.0
         with:
@@ -46,7 +41,36 @@ jobs:
 
       # TODO
       - name: Deploy the documentation
+        run: poetry run mkdocs build --verbose
+
+      # TODO
+      - name: Deploy the documentation
         run: poetry run mkdocs gh-deploy --strict --verbose
+
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      # https://github.com/step-security/harden-runner
+      - name: Harden Runner
+        uses: step-security/harden-runner@c8454efe5d0bdefd25384362fe217428ca277d57 # v2.2.0
+        with:
+          egress-policy: audit
+
+      - name: Check out the repository
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+
+      - name: Install poetry
+        run: pipx install poetry
+
+      # https://github.com/actions/setup-python
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@d27e3f3d7c64b4bbf8e4abfb9b63b83e846e0435 # v4.5.0
+        with:
+          python-version: "3.11"
+          cache: "poetry"
+
+      - name: Install dependencies with poetry
+        run: poetry install --no-interaction --verbose --with=docs
 
       - name: Build the Python package
         run: poetry build --ansi
