@@ -41,13 +41,11 @@ jobs:
       - name: Install dependencies with poetry
         run: poetry install --no-interaction --verbose --with=docs
 
-      # TODO
-      - name: Deploy the documentation
+      - name: Build the documentation
         run: poetry run mkdocs build --verbose
 
-      # TODO
       - name: Deploy the documentation
-        run: poetry run mkdocs gh-deploy --strict --verbose
+        run: poetry run mkdocs gh-deploy --force --verbose
 
   package:
     runs-on: ubuntu-latest
