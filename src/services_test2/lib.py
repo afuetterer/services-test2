@@ -19,6 +19,7 @@ def hello_world(msg: str) -> str:
 
 class Hello:
     msg: str
+    msg2: str
 
 
 class World:
