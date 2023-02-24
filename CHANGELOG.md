@@ -8,7 +8,13 @@ Available releases: <https://github.com/afuetterer/services-test2/releases>
 
 <!--next-version-placeholder-->
 
-## v0.11.4 (2023-02-24)
+## v0.12.0 (2023-02-24)
+### Feature
+* New attr ([`cd29f96`](https://github.com/afuetterer/services-test2/commit/cd29f96ae95d0036960871d95f846d99677d648d))
+
+**[See all commits in this version](https://github.com/afuetterer/services-test2/compare/0.11.4...0.12.0)**
+
+## 0.11.4 (2023-02-24)
 ### Fix
 * Attr 1 ([`514576c`](https://github.com/afuetterer/services-test2/commit/514576cbc0b77198221138f9075e5990b0d63ae1))
 
