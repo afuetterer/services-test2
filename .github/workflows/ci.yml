@@ -128,8 +128,12 @@ jobs:
         with:
           name: coverage-data
 
+      # TODO: this fails on main branch
+      # due to branch protection?
+
       # https://github.com/MishaKav/pytest-coverage-comment
       - name: Publish coverage report comment
+        id: coverage-comment
         uses: MishaKav/pytest-coverage-comment@e2c4b20b8a59537ce08ed767c5bb63581e0651ae # v1.1.45
         if: github.repository == 'afuetterer/services-test2'
         with:
@@ -139,6 +143,19 @@ jobs:
           junitxml-path: ./junit.xml
 
       # TODO: Badge
+      # https://github.com/MishaKav/pytest-coverage-comment/blob/main/.github/workflows/live-test.yml
+
+      # https://github.com/Schneegans/dynamic-badges-action
+      - name: Create coverage badge
+        uses: schneegans/dynamic-badges-action@v1.3.0
+        with:
+          auth: ${{ secrets.GIST_TOKEN }}
+          gistID: d1275cebbce1b40b7d576a24f972fde0
+          filename: coverage-badge.json
+          label: Coverage
+          message: ${{ steps.coverage-comment.outputs.coverage }}
+          color: ${{ steps.coverage-comment.outputs.color }}
+          namedLogo: python
 
   release:
     needs: [tests] #, codeql-analysis]
