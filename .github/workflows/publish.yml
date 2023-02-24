@@ -39,7 +39,10 @@ jobs:
       - name: Install dependencies with poetry
         run: poetry install --no-interaction --verbose --with=docs
 
-      - name: Build Python package
+      - name: Deploy the documentation
+        run: poetry run mkdocs gh-deploy --strict --verbose
+
+      - name: Build the Python package
         run: poetry build --ansi
 
       # https://github.com/pypa/gh-action-pypi-publish
