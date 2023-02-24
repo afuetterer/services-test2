@@ -1,5 +1,5 @@
 # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
-name: CD
+name: Publish
 
 on:
   release:
@@ -14,9 +14,6 @@ permissions:
   contents: read
 
 jobs:
-  tests:
-    uses: ./.github/workflows/ci.yaml
-
   publish:
     needs: [tests]
     runs-on: ubuntu-latest
@@ -26,6 +23,24 @@ jobs:
         uses: step-security/harden-runner@c8454efe5d0bdefd25384362fe217428ca277d57 # v2.2.0
         with:
           egress-policy: audit
+
+      - name: Check out the repository
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+
+      - name: Install poetry
+        run: pipx install poetry
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@d27e3f3d7c64b4bbf8e4abfb9b63b83e846e0435 # v4.5.0
+        with:
+          python-version: "3.11"
+          cache: "poetry"
+
+      - name: Install dependencies with poetry
+        run: poetry install --no-interaction --verbose --with=docs
+
+      - name: Build Python package
+        run: poetry build --ansi
 
       # https://github.com/pypa/gh-action-pypi-publish
       - name: Publish package to TestPyPI
