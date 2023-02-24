@@ -4,8 +4,8 @@ name: CI
 on:
   push:
     branches: [main]
-  release:
-    types: [created]
+  # release:
+  #   types: [created]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -86,7 +86,7 @@ jobs:
           cache: "poetry"
 
       - name: Install dependencies with poetry
-        run: poetry install --no-interaction --verbose
+        run: poetry install --no-interaction --verbose --with=docs,release
 
       # https://github.com/pre-commit/action
       - name: Run code quality tests with pre-commit
@@ -150,7 +150,7 @@ jobs:
           poetry run semantic-release publish --verbosity=DEBUG
 
       - name: Deploy the documentation
-        if: github.event_name == 'release'
+        if: startsWith(github.ref, 'refs/tags/')
         run: |
           poetry run mkdocs gh-deploy --strict --verbose
 
