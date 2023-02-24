@@ -126,7 +126,7 @@ commit_author = "github-actions[bot] <41898282+github-actions[bot]@users.noreply
 commit_subject = "chore: release {version}"
 # TODO: skip ci or not?
 # run CI on tagged commits, skip tests? but run docs and publish?
-# commit_message = "[skip ci]"
+commit_message = "[skip ci]"
 version_toml = "pyproject.toml:tool.poetry.version"
 version_pattern = [
   'CITATION.cff:^version: {version}$'
