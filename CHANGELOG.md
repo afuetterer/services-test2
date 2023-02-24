@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file.
 
 <!--next-version-placeholder-->
 
-## v0.10.0 (2023-02-24)
+## v0.11.0 (2023-02-24)
+### Feature
+* Something ([`78d06b1`](https://github.com/afuetterer/services-test2/commit/78d06b18fdce990e6f55b0189f9e8c0c16f11887))
+
+**[See all commits in this version](https://github.com/afuetterer/services-test2/compare/0.10.0...0.11.0)**
+
+## 0.10.0 (2023-02-24)
 ### Feature
 * Add attr ([`c316392`](https://github.com/afuetterer/services-test2/commit/c31639224054e1a788f8266758c4aae6a1ce9fe4))
 
