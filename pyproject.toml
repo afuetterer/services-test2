@@ -56,7 +56,7 @@ services-test2 = "services_test2.__main__:app"
 [build-system]
 build-backend = "poetry.core.masonry.api"
 requires = [
-  "poetry-core",
+    "poetry-core",
 ]
 
 [tool.black]
