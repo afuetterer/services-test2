@@ -48,7 +48,7 @@ mkdocs-section-index = ">=0.3.5"
 [tool.poetry.group.release]
 optional = true
 [tool.poetry.group.release.dependencies]
-python-semantic-release = ">=7.33.1"
+python-semantic-release = { version = "==8.0.0-alpha.3", allow-prereleases = true}
 
 [tool.poetry.scripts]
 services-test2 = "services_test2.__main__:app"
