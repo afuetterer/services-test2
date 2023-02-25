@@ -142,12 +142,9 @@ jobs:
           junitxml-title: Summary
           junitxml-path: ./junit.xml
 
-      # TODO: Badge
-      # https://github.com/MishaKav/pytest-coverage-comment/blob/main/.github/workflows/live-test.yml
-
       # https://github.com/Schneegans/dynamic-badges-action
       - name: Create coverage badge
-        uses: schneegans/dynamic-badges-action@v1.3.0
+        uses: schneegans/dynamic-badges-action@5d424ad4060f866e4d1dab8f8da0456e6b1c4f56 # v1.6.0
         with:
           auth: ${{ secrets.GIST_TOKEN }}
           gistID: d1275cebbce1b40b7d576a24f972fde0
