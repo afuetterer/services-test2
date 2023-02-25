@@ -143,7 +143,7 @@ jobs:
           junitxml-path: ./junit.xml
 
       # https://github.com/Schneegans/dynamic-badges-action
-      - name: Create coverage badge
+      - name: Publish coverage badge
         uses: schneegans/dynamic-badges-action@5d424ad4060f866e4d1dab8f8da0456e6b1c4f56 # v1.6.0
         with:
           auth: ${{ secrets.GIST_TOKEN }}
