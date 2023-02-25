@@ -114,10 +114,12 @@ jobs:
       # TODO: remove steps below
 
       - name: Install dependencies with poetry
+        if: matrix.python-version == '3.11'
         run: poetry install --no-interaction --verbose --only=release
 
       # https://python-semantic-release.readthedocs.io/en/latest/automatic-releases/github-actions.html
       - name: Publish semantic release
+        if: matrix.python-version == '3.11'
         env:
           GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         run: |
