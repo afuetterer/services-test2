@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "services-test2"
-version = "0.12.3"
+version = "0.0.0"
 authors = ["Heinz-Alexander Fuetterer <fuetterh@posteo.de>"]
 description = "services-test2"
 license = "MIT"
@@ -48,7 +48,7 @@ mkdocs-section-index = ">=0.3.5"
 [tool.poetry.group.release]
 optional = true
 [tool.poetry.group.release.dependencies]
-python-semantic-release = ">=7.33.1"
+python-semantic-release = { version = "==8.0.0-alpha.3", allow-prereleases = true}
 
 [tool.poetry.scripts]
 services-test2 = "services_test2.__main__:app"
@@ -56,7 +56,7 @@ services-test2 = "services_test2.__main__:app"
 [build-system]
 build-backend = "poetry.core.masonry.api"
 requires = [
-  "poetry-core",
+    "poetry-core",
 ]
 
 [tool.black]
@@ -110,28 +110,72 @@ known-first-party = ["services_test", "tests"]
 # https://github.com/charliermarsh/ruff#pyupgrade
 keep-runtime-typing = true
 
+# TODO: CITATION.cff: version_pattern
+# TODO: CITATION.cff: date-released
+# sed -i -r "s/(date-released: ).*/\1$(date '+%Y-%m-%d')/" CITATION.cff
+# TODO: compare releases url
+
 [tool.semantic_release]
-# https://python-semantic-release.readthedocs.io/en/latest/configuration.html
-branch = "main"
-commit_author = "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
-commit_subject = "chore: release {version}"
-commit_message = "[skip ci]"
-version_toml = "pyproject.toml:tool.poetry.version"
-version_pattern = [
-  'CITATION.cff:^version: {version}$'
-]
-# TODO: does this work?
-upload_to_pypi = false
-upload_to_release = true
-build_command = "poetry build"
-# Update release date in CITATION.cff
-pre_commit_command = '''
-sed -i -r "s/(date-released: ).*/\1$(date '+%Y-%m-%d')/" CITATION.cff &&
-sed -i -r "s/^## v/## /" CHANGELOG.md
-''' # this does not work. this runs before the changelog is updated!
-changelog_components = "semantic_release.changelog.changelog_headers,semantic_release.changelog.compare_url"
+# https://github.com/python-semantic-release/python-semantic-release/blob/v8.0.0-alpha.3/docs/configuration.rst
+# https://github.com/python-semantic-release/python-semantic-release/blob/v8.0.0-alpha.3/docs/migrating_from_v7.rst
+# https://github.com/python-semantic-release/python-semantic-release/tree/v8.0.0-alpha.3/docs
+commit_message = "{version}\n\n[skip ci]"
+commit_parser = "angular"
+logging_use_named_masks = false
 major_on_zero = false
-hvcs = "github"
-# TODO: how to get rid of v prefix in changelog?
-# https://github.com/python-semantic-release/python-semantic-release/issues/561
 tag_format = "{version}"
+version_toml = ["pyproject.toml:tool.poetry.version"]
+
+[tool.semantic_release.branches.main]
+match = "main"
+
+[tool.semantic_release.changelog]
+template_dir = "templates"
+changelog_file = "CHANGELOG.md"
+exclude_commit_patterns = [
+    "chore: release"
+]
+
+[tool.semantic_release.changelog.environment]
+block_start_string = "{%"
+block_end_string = "%}"
+variable_start_string = "{{"
+variable_end_string = "}}"
+comment_start_string = "{#"
+comment_end_string = "#}"
+trim_blocks = false
+lstrip_blocks = false
+newline_sequence = "\n"
+keep_trailing_newline = false
+extensions = []
+autoescape = true
+
+[tool.semantic_release.commit_author]
+env = "GIT_COMMIT_AUTHOR"
+default = "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
+
+[tool.semantic_release.commit_parser_options]
+allowed_tags = [
+    "build",
+    "chore",
+    "ci",
+    "docs",
+    "feat",
+    "fix",
+    "perf",
+    "style",
+    "refactor",
+    "test",
+]
+minor_tags = ["feat"]
+patch_tags = ["fix", "perf"]
+
+[tool.semantic_release.remote]
+name = "origin"
+type = "github"
+ignore_token_for_push = false
+
+[tool.semantic_release.remote.token]
+env = "GH_TOKEN"
+
+# TODO: use psr to push to pypi?
