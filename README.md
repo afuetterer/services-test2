@@ -39,7 +39,7 @@ $ pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.or
 [ci]: https://github.com/afuetterer/services-test/actions/workflows/ci.yml
 [ci-badge]: https://github.com/afuetterer/services-test/actions/workflows/ci.yml/badge.svg
 [coverage]: https://github.com/afuetterer/services-test/actions/workflows/ci.yml
-[coverage-badge]: docs/img/coverage.svg
+[coverage-badge]: https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/afuetterer/d1275cebbce1b40b7d576a24f972fde0/raw/coverage-badge.json
 [docs]: https://afuetterer.github.io/services-test
 [license]: https://opensource.org/licenses/MIT
 [license-badge]: https://img.shields.io/github/license/afuetterer/services-test
