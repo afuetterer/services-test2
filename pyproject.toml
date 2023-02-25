@@ -137,6 +137,7 @@ tag_format = "{version}"
 version_toml = ["pyproject.toml:tool.poetry.version"]
 
 [tool.semantic_release.branches.main]
+# TODO: change this, when PR is merged
 match = "(main|semantic-release)"
 
 [tool.semantic_release.changelog]
