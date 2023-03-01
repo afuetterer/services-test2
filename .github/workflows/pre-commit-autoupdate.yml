@@ -48,6 +48,7 @@ jobs:
       - uses: peter-evans/create-pull-request@2b011faafdcbc9ceb11414d64d0573f37c774b04 # v4.2.3
         with:
           author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          base: main
           branch: pre-commit-autoupdate
           title: "chore(deps-dev): update pre-commit hooks"
           commit-message: "chore(deps-dev): update pre-commit hooks"
