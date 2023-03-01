@@ -47,6 +47,7 @@ repos:
     rev: 17a61c4f7a7cd6a28daa5c4b88c725030e45e641 # frozen: v1.0.1
     hooks:
       - id: mypy
+        # TODO
         # args: ["--strict"]
         additional_dependencies:
           - pytest-mock
