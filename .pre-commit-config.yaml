@@ -14,7 +14,7 @@ repos:
       - id: black
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: db78847faa4d18e04b061cf486176a60f30a30d7 # frozen: 0.9.1
+    rev: 80d5c11bedf4a8d87dd4255aa755542f99f8aa83 # frozen: 0.9.2
     hooks:
       - id: pyproject-fmt
         args: ["--indent=4"]
@@ -39,7 +39,7 @@ repos:
           )$
 
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: a794b11a962f22e77e48eba5c50d505b7cd7e0b1 # frozen: v0.0.248
+    rev: 8cddec33c0698a68b19f895ba7e37582d2e0104c # frozen: v0.0.253
     hooks:
       - id: ruff
 
@@ -62,6 +62,6 @@ repos:
         args: ["--format=ansi"]
 
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: 65988f1ff11b947ecdbac6e8f8e3fea8f2851476 # frozen: v2.42.0
+    rev: e3c4e024c17fc88690491fa824389b239aaa6428 # frozen: v2.42.1
     hooks:
       - id: commitizen
