@@ -11,7 +11,6 @@ on:
       - "pyproject.toml"
       - "poetry.lock"
   pull_request:
-    branches: [main]
 
 # https://docs.github.com/en/actions/using-jobs/using-concurrency
 concurrency:
