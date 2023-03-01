@@ -49,8 +49,8 @@ jobs:
         with:
           author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           branch: pre-commit-autoupdate
-          title: "chore(deps): update pre-commit hooks"
-          commit-message: "chore(deps): update pre-commit hooks"
+          title: "chore(deps-dev): update pre-commit hooks"
+          commit-message: "chore(deps-dev): update pre-commit hooks"
           body: Update pre-commit hooks
           labels: |
             dependencies
