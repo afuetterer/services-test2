@@ -145,6 +145,11 @@ jobs:
       # https://github.com/Schneegans/dynamic-badges-action
       - name: Publish coverage badge
         uses: schneegans/dynamic-badges-action@5d424ad4060f866e4d1dab8f8da0456e6b1c4f56 # v1.6.0
+        # only publish coverage badge, when push on main branch
+        if: >-
+          github.repository == 'afuetterer/services-test2'
+          && github.event_name == 'push'
+          && github.ref == 'refs/heads/main'
         with:
           auth: ${{ secrets.GIST_TOKEN }}
           gistID: d1275cebbce1b40b7d576a24f972fde0
