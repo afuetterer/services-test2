@@ -80,4 +80,5 @@ jobs:
             dependencies
             pre-commit
           delete-branch: true
+          assignees: afuetterer
           reviewers: afuetterer
