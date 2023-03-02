@@ -53,6 +53,9 @@ jobs:
     needs: [update]
     runs-on: ubuntu-latest
     steps:
+      - name: Check out the repository
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+
       # https://github.com/actions/download-artifact
       - name: Download .pre-commit-config.yaml
         uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3.02
