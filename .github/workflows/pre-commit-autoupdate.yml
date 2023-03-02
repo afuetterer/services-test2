@@ -41,6 +41,24 @@ jobs:
         with:
           args: --write .pre-commit-config.yaml
 
+      # https://github.com/actions/upload-artifact
+      - name: Upload .pre-commit-config.yaml
+        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
+        with:
+          name: .pre-commit-config.yaml
+          path: .pre-commit-config.yaml
+          retention-days: 1
+
+  create-pr:
+    needs: [update]
+    runs-on: ubuntu-latest
+    steps:
+      # https://github.com/actions/download-artifact
+      - name: Download .pre-commit-config.yaml
+        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3.02
+        with:
+          name: .pre-commit-config.yaml
+
       # https://github.com/peter-evans/create-pull-request
       - uses: peter-evans/create-pull-request@2b011faafdcbc9ceb11414d64d0573f37c774b04 # v4.2.3
         with:
@@ -56,8 +74,8 @@ jobs:
           body: |
             Update pre-commit hooks
 
-            - This PR is auto-generated.
-            - The job runs once a month at midnight of the first day of the month.
+            - This PR is auto-generated
+            - The job runs once a month at midnight of the first day of the month
           labels: |
             dependencies
             pre-commit
