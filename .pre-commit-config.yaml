@@ -1,3 +1,4 @@
+# https://pre-commit.com/#usage
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: f71fa2c1f9cf5cb705f73dffe4b21f7c61470ba9 # frozen: v4.4.0
@@ -29,6 +30,7 @@ repos:
     hooks:
       - id: prettier
         # .git/COMMIT_EDITMSG: commitizen needs to read this file
+        # TODO
         # CHANGELOG.md: release-please autocreates this file, prettier would mess with it
         # docs/cli.md: prettier would destroy the required indentation
         exclude: >
@@ -55,7 +57,7 @@ repos:
         exclude: "docs/"
 
   - repo: https://github.com/FHPythonUtils/LicenseCheck/
-    rev: "5bbbb11e58d91a1df4e791f3d48e904a5a25b78d" # frozen: 2023
+    rev: 5bbbb11e58d91a1df4e791f3d48e904a5a25b78d # frozen: 2023
     hooks:
       - id: licensecheck
         files: pyproject.toml
