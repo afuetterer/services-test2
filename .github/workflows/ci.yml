@@ -136,7 +136,7 @@ jobs:
       # https://github.com/MishaKav/pytest-coverage-comment
       - name: Publish coverage report comment
         id: coverage-comment
-        uses: MishaKav/pytest-coverage-comment@e2c4b20b8a59537ce08ed767c5bb63581e0651ae # v1.1.45
+        uses: MishaKav/pytest-coverage-comment@be8d9a47c0ca22975c9cb8b892d268dd9815640f # v1.1.46
         if: github.repository == 'afuetterer/services-test2'
         with:
           title: Coverage report
