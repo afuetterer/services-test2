@@ -88,7 +88,7 @@ jobs:
 
       # https://github.com/pypa/gh-action-pypi-publish
       - name: Publish package to TestPyPI
-        uses: pypa/gh-action-pypi-publish@c7f29f7adef1a245bd91520e94867e5c6eedddcc # v1.6.4
+        uses: pypa/gh-action-pypi-publish@22b4d1f12511f2696162c08546dafbaa903448a2 # v1.7.1
         with:
           password: ${{ secrets.TEST_PYPI_API_TOKEN }}
           repository_url: https://test.pypi.org/legacy/
